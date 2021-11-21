@@ -16,10 +16,13 @@ def myAPI():
         return make_response(jsonify({"response": "post request received"}), 200)
     else:
         print(request.args)  # ex. http://localhost:8080/api?test=1
+        logger.info(f'args: {request.args}')
         return make_response(jsonify({"response": "get request received"}), 200)
 
 
 # ======================================
 if __name__ == '__main__':
+    logging.basicConfig(filename='serverRun.log', level=logging.INFO)
+    logger = logging.getLogger(__name__)
     print('basic REST api enabled on localhost port 8080')
     app.run(debug=True, host='127.0.0.1', port=8080)
